@@ -28,7 +28,7 @@ if uploaded_file is not None:
     folium.Marker([location.latitude, location.longitude]).add_to(map)
   
   # Display the map
-  st_folium(map)
+  st_folium(map, width=700)
 
 
 
