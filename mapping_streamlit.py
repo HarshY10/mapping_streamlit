@@ -5,7 +5,7 @@ from geopy.geocoders import Nominatim
 import folium
 from streamlit_folium import st_folium
 
-st.title(':blue[Creditor/Debtor Address Mapping] :world_map:', divider='rainbow')
+st.header(':blue[Creditor/Debtor Address Mapping] :world_map:', divider='rainbow')
 uploaded_file = st.file_uploader("Upload an excel file")
 
 
