@@ -19,13 +19,15 @@ if uploaded_file is not None:
   locations = []
   add_name = []
 
-  # Iterate over the addresses and geocode them
-  for (address,name) in zip(addresses,names):
-  geolocator = Nominatim(user_agent="my_app", timeout=3)
-  location = geolocator.geocode(address)
-  if location != None:
-    locations.append(location)
-    add_name.append(name)
+
+  with st.spinner('Wait for it...'):
+    # Iterate over the addresses and geocode them
+    for (address,name) in zip(addresses,names):
+      geolocator = Nominatim(user_agent="my_app", timeout=3)
+      location = geolocator.geocode(address)
+      if location != None:
+        locations.append(location)
+        add_name.append(name)
 
   
   # Create a map centered on first location
@@ -33,8 +35,8 @@ if uploaded_file is not None:
 
   for (location,name) in zip(locations,add_name):
   # Add a marker for  location
-  folium.Marker([location.latitude,location.longitude],
-                 popup=name).add_to(map)
+    folium.Marker([location.latitude,location.longitude],
+                  popup=name).add_to(map)
   
   # Display the map
   st_folium(map, width=700)
