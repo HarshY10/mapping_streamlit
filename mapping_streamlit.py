@@ -5,6 +5,7 @@ from geopy.geocoders import Nominatim
 import folium
 from streamlit_folium import st_folium
 
+st.header(':blue[Creditor/Debtor Mapping] :world_map:', divider='rainbow')
 uploaded_file = st.file_uploader("Upload an excel file")
 if uploaded_file is not None:
   df = pd.read_excel(uploaded_file)
@@ -15,6 +16,9 @@ if uploaded_file is not None:
   addresses = df['$Address[1].Address'].tolist()
   names = df['$Name'].tolist()
 
+  flag = len(names)#Flag to break the location loop
+  i = 1
+  
   # Create lists to store the geocoded locations and names
   locations = []
   add_name = []
@@ -29,6 +33,9 @@ if uploaded_file is not None:
       if location != None:
         locations.append(location)
         add_name.append(name)
+      i = i + 1
+      if i == flag:
+        break
   st.success('Map is ready!')
   
   # Create a map centered on first location
