@@ -28,7 +28,7 @@ if uploaded_file is not None:
       if location != None:
         locations.append(location)
         add_name.append(name)
-
+  st.success('Map is ready!')
   
   # Create a map centered on first location
   map = folium.Map(location=(locations[0].latitude, locations[0].longitude), zoom_start=12)
