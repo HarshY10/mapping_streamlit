@@ -21,24 +21,28 @@ if uploaded_file is not None:
   flag = len(names)#Flag to break the location loop
   i = 1
   
-  # Create lists to store the geocoded locations and names
-  locations = []
-  add_name = []
-
-  @st.chache_data
-  with st.spinner('Please wait...'):
-    # Iterate over the addresses and geocode them
-    for (address,name) in zip(addresses,names):
-      geolocator = Nominatim(user_agent="st_mapping_app", timeout=10)
-      location = geolocator.geocode(address)
-      if location != None:
-        locations.append(location)
-        add_name.append(name)
-      i = i + 1
-      if i == flag:
-        break
-  st.success('Map is ready!')
   
+
+  @st.chache_data # chaching decorator
+  def load_geodata(addresses,names):
+    # Create lists to store the geocoded locations and names
+    locations = []
+    add_name = []
+    with st.spinner('Please wait...'):
+    # Iterate over the addresses and geocode them
+      for (address,name) in zip(addresses,names):
+        geolocator = Nominatim(user_agent="st_mapping_app", timeout=10)
+        location = geolocator.geocode(address)
+        if location != None:
+          locations.append(location)
+          add_name.append(name)
+        i = i + 1
+        if i == flag:
+          break
+    st.success('Map is ready!')
+    return(locations,add_name)
+    
+  locations,add_name = load_geodata(addresses,names)
   # Create a map centered on first location
   map = folium.Map(location=(locations[0].latitude, locations[0].longitude), zoom_start=12)
 
