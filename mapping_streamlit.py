@@ -20,14 +20,13 @@ if uploaded_file is not None:
 
   flag = len(names)#Flag to break the location loop
   i = 1
-  
-  
+
+  # Create lists to store the geocoded locations and names
+  locations = []
+  add_name = []
 
   @st.chache_data # chaching decorator
   def load_geodata(addresses,names):
-    # Create lists to store the geocoded locations and names
-    locations = []
-    add_name = []
     with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
       for (address,name) in zip(addresses,names):
