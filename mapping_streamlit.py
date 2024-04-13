@@ -7,6 +7,8 @@ from streamlit_folium import st_folium
 
 st.header(':blue[Creditor/Debtor Mapping] :world_map:', divider='rainbow')
 uploaded_file = st.file_uploader("Upload an excel file")
+
+
 if uploaded_file is not None:
   df = pd.read_excel(uploaded_file)
   df = df.drop(['$Parent','$Address[2].Address','$BillCreditPeriod','$LEDSTATENAME'],axis=1)
@@ -23,12 +25,11 @@ if uploaded_file is not None:
   locations = []
   add_name = []
 
-
+  @st.chache_data
   with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
     for (address,name) in zip(addresses,names):
       geolocator = Nominatim(user_agent="st_mapping_app", timeout=10)
-      geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
       location = geolocator.geocode(address)
       if location != None:
         locations.append(location)
@@ -48,7 +49,3 @@ if uploaded_file is not None:
   
   # Display the map
   st_folium(map, width=700)
-
-
-
-  
