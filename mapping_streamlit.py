@@ -20,7 +20,7 @@ if uploaded_file is not None:
   add_name = []
 
 
-  with st.spinner('Wait for it...'):
+  with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
     for (address,name) in zip(addresses,names):
       geolocator = Nominatim(user_agent="my_app", timeout=3)
