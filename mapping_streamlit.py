@@ -18,8 +18,7 @@ if uploaded_file is not None:
   addresses = df['$Address[1].Address'].tolist()
   names = df['$Name'].tolist()
 
-  flag = len(names)#Flag to break the location loop
-  i = 1
+  
 
   # Create lists to store the geocoded locations and names
   locations = []
@@ -27,6 +26,8 @@ if uploaded_file is not None:
 
   @st.cache_data # caching decorator
   def load_geodata(addresses,names):
+    flag = len(names)#Flag to break the location loop
+    i = 1
     with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
       for (address,name) in zip(addresses,names):
