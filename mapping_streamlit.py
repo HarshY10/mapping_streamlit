@@ -25,7 +25,7 @@ if uploaded_file is not None:
   locations = []
   add_name = []
 
-  @st.chache_data # chaching decorator
+  @st.cache_data # caching decorator
   def load_geodata(addresses,names):
     with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
