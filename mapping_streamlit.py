@@ -5,7 +5,7 @@ from geopy.geocoders import Nominatim
 import folium
 from streamlit_folium import st_folium
 
-st.header(':blue[Creditor/Debtor Mapping] :world_map:', divider='rainbow')
+st.title(':blue[Creditor/Debtor Address Mapping] :world_map:', divider='rainbow')
 uploaded_file = st.file_uploader("Upload an excel file")
 
 
@@ -43,6 +43,7 @@ if uploaded_file is not None:
     return(locations,add_name)
     
   locations,add_name = load_geodata(addresses,names)
+  
   # Create a map centered on first location
   map = folium.Map(location=(locations[0].latitude, locations[0].longitude), zoom_start=12)
 
