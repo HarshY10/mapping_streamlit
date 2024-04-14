@@ -15,7 +15,7 @@ if uploaded_file is not None:
   df = pd.read_excel(uploaded_file)
   df = df.drop(['$Parent','$Address[2].Address','$BillCreditPeriod','$LEDSTATENAME'],axis=1)
   df = df.dropna()
-  #st.write(df.shape)
+  st.write("It may take a few minutes. Thank you for your patience!")
   
   addresses = df['$Address[1].Address'].tolist()
   names = df['$Name'].tolist()
