@@ -10,14 +10,14 @@ st.header(':blue[Creditor/Debtor Address Mapping] :world_map:', divider='rainbow
 
 uploaded_file = st.file_uploader("Upload an excel file") #Excel File uploader
 
-if uploaded_file is None:
-  @st.cache_data # caching decorator, to handle data while reloading
-    def_loc = [12.9915, 80.2337] 
-    def_map = folium.Map([12.9915, 80.2337], zoom_start=12) #default map with location IIT Madras 12.9915° N, 80.2337° E
-    #Setting the marker
-    folium.Marker([12.9915, 80.2337], popup="IIT Madras").addto(def_map)
-    # Display the map
-    st_folium(def_map, width=1000)  
+
+@st.cache_data # caching decorator, to handle data while reloading
+  def_loc = [12.9915, 80.2337] 
+  def_map = folium.Map([12.9915, 80.2337], zoom_start=12) #default map with location IIT Madras 12.9915° N, 80.2337° E
+  #Setting the marker
+  folium.Marker([12.9915, 80.2337], popup="IIT Madras").addto(def_map)
+  # Display the map
+  st_folium(def_map, width=1000)  
 
 #Reading the Excel file, storing the name and address columns, dropping the rest 
 if uploaded_file is not None:
