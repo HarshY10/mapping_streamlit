@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import geopy
 from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
 import folium
 from streamlit_folium import st_folium
 
@@ -32,13 +33,16 @@ if uploaded_file is not None:
     with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
       for (address,name) in zip(addresses,names):
+        #Nominatim is a free geocoding service for OpenStreetMaps; timeout is wait for response parameter 10s
         geolocator = Nominatim(user_agent="st_mapping_app", timeout=10)
+        #Ratelimiter to send only 1 request per second to avoid failures 
+        geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
         location = geolocator.geocode(address)
         if location != None:
           locations.append(location)
           add_name.append(name)
         i = i + 1
-        if i  == flag:
+        if i == flag:
           break
     st.success('Interactive Map is ready! Click on marker to display the name.')
     return(locations,add_name)
