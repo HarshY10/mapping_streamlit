@@ -32,7 +32,7 @@ if uploaded_file is not None:
     with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
       for (address,name) in zip(addresses,names):
-        geolocator = Nominatim(user_agent="st_mapping_app", timeout=10)
+        geolocator = Nominatim(user_agent="st_mapping_app", timeout=15)
         location = geolocator.geocode(address)
         if location != None:
           locations.append(location)
