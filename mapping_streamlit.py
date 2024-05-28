@@ -14,7 +14,8 @@ if uploaded_file is None:
   def_loc = [12.9915, 80.2337] #default IIT Madras 12.9915° N, 80.2337° E
   def_map = folium.Map(location = def_loc, zoom_start=12) 
   #Setting the marker
-  folium.Marker([12.9915, 80.2337], popup=folium.Popup("<h5>IIT Madras</h5>",max_width=200)).add_to(def_map)
+  #Using HTML Tags to enlarge text and the width of popup box to fit text
+  folium.Marker([12.9915, 80.2337], popup=folium.Popup("<h5>IIT Madras</h5>", max_width=200)).add_to(def_map) 
   # Display the map
   st_folium(def_map, width=1000)  
 
@@ -60,7 +61,7 @@ if uploaded_file is not None:
   for (location,name) in zip(locations,add_name):
   # Add a marker for location along with popups to display name
     folium.Marker([location.latitude,location.longitude],
-                  popup=name).add_to(map)
+                  popup=folium.Popup(f"<h5>{name}<\h5>", max_width=200)).add_to(map)
   
   # Display the map
   st_folium(map, width=1000)
