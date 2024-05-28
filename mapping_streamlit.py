@@ -10,7 +10,7 @@ st.header(':blue[Creditor/Debtor Address Mapping] :world_map:', divider='rainbow
 
 uploaded_file = st.file_uploader("Upload an excel file") #Excel File uploader
 
-if st.button("Map IIT Madras!"):
+if uploaded_file is None::
   def_loc = [12.9915, 80.2337] #default IIT Madras 12.9915° N, 80.2337° E
   def_map = folium.Map(location = def_loc, zoom_start=12) 
   #Setting the marker
@@ -18,7 +18,7 @@ if st.button("Map IIT Madras!"):
   folium.Marker([12.9915, 80.2337], popup=folium.Popup("<h5>IIT Madras</h5>", max_width=200)).add_to(def_map) 
   # Display the map
   st_folium(def_map, width=1000)  
-
+  
 
 #Reading the Excel file, storing the name and address columns, dropping the rest 
 if uploaded_file is not None:
