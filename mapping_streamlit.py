@@ -8,16 +8,18 @@ from streamlit_folium import st_folium
 #App Title
 st.header(':blue[Creditor/Debtor Address Mapping] :world_map:', divider='rainbow')
 
-uploaded_file = st.file_uploader("Upload an excel file") #Excel File uploader
-
-
-#@st.cache_data # caching decorator, to handle data while reloading
-#def_loc = [12.9915, 80.2337] 
-def_map = folium.Map([12.9915, 80.2337], zoom_start=12) #default map with location IIT Madras 12.9915° N, 80.2337° E
+def_loc = [12.9915, 80.2337] #default IIT Madras 12.9915° N, 80.2337° E
+def_map = folium.Map(location = def_loc, zoom_start=12) 
 #Setting the marker
 folium.Marker([12.9915, 80.2337], popup="IIT Madras").addto(def_map)
 # Display the map
 st_folium(def_map, width=1000)  
+
+uploaded_file = st.file_uploader("Upload an excel file") #Excel File uploader
+
+
+#@st.cache_data # caching decorator, to handle data while reloading
+
 
 #Reading the Excel file, storing the name and address columns, dropping the rest 
 if uploaded_file is not None:
