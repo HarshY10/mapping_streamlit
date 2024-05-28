@@ -34,7 +34,7 @@ if uploaded_file is not None:
     # Iterate over the addresses and geocode them
       for (address,name) in zip(addresses,names):
         #Nominatim is a free geocoding service for OpenStreetMaps; timeout is wait for response parameter 10s
-        geolocator = Nominatim(user_agent="st_mapping_app", timeout=50)
+        geolocator = Nominatim(user_agent="st_mapping_app", timeout=10)
         #Ratelimiter to send only 1 request per second to avoid failures 
         geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
         location = geolocator.geocode(address)
