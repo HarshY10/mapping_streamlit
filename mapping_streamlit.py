@@ -10,7 +10,7 @@ st.header(':blue[Creditor/Debtor Address Mapping] :world_map:', divider='rainbow
 
 uploaded_file = st.file_uploader("Upload an excel file") #Excel File uploader
 
-if uploaded_file is None:
+if st.button("Map IIT Madras!"):
   def_loc = [12.9915, 80.2337] #default IIT Madras 12.9915° N, 80.2337° E
   def_map = folium.Map(location = def_loc, zoom_start=12) 
   #Setting the marker
