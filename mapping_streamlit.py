@@ -28,17 +28,17 @@ if uploaded_file is not None:
   @st.cache_data # caching decorator, to handle data while reloading
   def load_geodata(addresses,names):
     flag = len(names)#Flag to break the location loop
-    i = 1
+    i = 0
     with st.spinner('Please wait...'):
     # Iterate over the addresses and geocode them
       for (address,name) in zip(addresses,names):
-        geolocator = Nominatim(user_agent="stlit_mapping_app", timeout=10)
+        geolocator = Nominatim(user_agent="st_mapping_app", timeout=10)
         location = geolocator.geocode(address)
         if location != None:
           locations.append(location)
           add_name.append(name)
         i = i + 1
-        if i == flag:
+        if i  == flag:
           break
     st.success('Interactive Map is ready! Click on marker to display the name.')
     return(locations,add_name)
